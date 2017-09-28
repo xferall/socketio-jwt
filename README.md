@@ -49,7 +49,7 @@ The previous approach uses a second roundtrip to send the jwt, there is a way yo
 
 ```javascript
 var io            = require("socket.io")(server);
-var socketioJwt   = require("socketio-jwt");
+var socketioJwt   = require("socketio-jwt2");
 
 //// With socket.io < 1.0 ////
 io.set('authorization', socketioJwt.authorize({
