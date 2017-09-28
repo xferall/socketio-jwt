@@ -6,7 +6,7 @@ var socketio_jwt = require('../../lib');
 
 var jwt = require('jsonwebtoken');
 
-var xtend = require('xtend');
+var xtend = require('underscore').extend;
 var bodyParser = require('body-parser');
 
 var server, sio;
@@ -18,13 +18,13 @@ exports.start = function (options, callback) {
     555: 'other'
   };
 
-  if(typeof options == 'function'){
+  if (typeof options == 'function') {
     callback = options;
     options = {};
   }
 
   options = xtend({
-    secret: function(request, decodedToken, callback) {
+    secret: function (request, decodedToken, callback) {
       callback(null, SECRETS[decodedToken.id]);
     },
     timeout: 1000,

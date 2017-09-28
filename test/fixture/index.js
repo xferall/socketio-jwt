@@ -6,15 +6,14 @@ var socketio_jwt = require('../../lib');
 
 var jwt = require('jsonwebtoken');
 
-var xtend = require('xtend');
+var xtend = require('underscore').extend;
 var bodyParser = require('body-parser');
 
 var server, sio;
 var enableDestroy = require('server-destroy');
 
 exports.start = function (options, callback) {
-
-  if(typeof options == 'function'){
+  if (typeof options == 'function') {
     callback = options;
     options = {};
   }
@@ -36,9 +35,9 @@ exports.start = function (options, callback) {
       email: 'john@doe.com',
       id: 123
     };
-
+ 
     // We are sending the profile inside the token
-    var token = jwt.sign(profile, options.secret, { expiresInMinutes: 60*5 });
+    var token = jwt.sign(profile, options.secret, { expiresIn: '5h' });
 
     res.json({token: token});
   });

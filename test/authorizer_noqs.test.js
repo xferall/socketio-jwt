@@ -19,7 +19,7 @@ describe('authorizer without querystring', function () {
       var socket = io.connect('http://localhost:9000', {
         forceNew: true
       });
-      socket.once('disconnect', function () {
+      socket.once('disconnect', function (e) {
         done();
       });
     });
@@ -31,7 +31,8 @@ describe('authorizer without querystring', function () {
 
       socket.on('echo-response', function () {
         done(new Error('this should not happen'));
-      }).emit('echo', { hi: 123 });
+      })
+      .emit('echo', { hi: 123 });
 
       setTimeout(done, 1200);
     });
@@ -56,13 +57,35 @@ describe('authorizer without querystring', function () {
         'forceNew':true,
       });
       var token = this.token;
-      socket.on('connect', function(){
+      socket.on('connect', function() {
         socket.on('echo-response', function () {
           socket.close();
           done();
-        }).on('authenticated', function () {
+        })
+        .on('authenticated', function (e) {
           socket.emit('echo');
-        }).emit('authenticate', { token: token });
+        })
+        .emit('authenticate', { token: token });
+      });
+    });
+
+    it('should do the handshake and connect with req.headers.authorization', function (done){
+      var socket = io('http://localhost:9000', {
+        extraHeaders: {
+          Authorization: this.token
+        },
+        forceNew: true
+      });
+      var token = this.token;
+      socket.on('connect', function() {
+        socket.on('echo-response', function () {
+          socket.close();
+          done();
+        })
+        .on('authenticated', function (e) {
+          socket.emit('echo');
+        })
+        .emit('authenticate');
       });
     });
   });

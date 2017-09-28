@@ -36,7 +36,19 @@ describe('authorizer with secret function', function () {
         done();
       }.bind(this));
     });
-
+    it('should do the handshake and connect with header', function (done){
+      var socket = io.connect('http://localhost:9000', {
+        forceNew :true,
+        extraHeaders: {
+          authorization: this.token
+        }
+      });
+      socket.on('connect', function(){
+        socket.close();
+        done();
+      })
+      .on('error', done);
+    });
     it('should do the handshake and connect', function (done){
       var socket = io.connect('http://localhost:9000', {
         'forceNew':true,
@@ -68,6 +80,7 @@ describe('authorizer with secret function', function () {
         done();
       });
     });
+    
   });
 
 });
