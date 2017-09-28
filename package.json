@@ -1,6 +1,6 @@
 {
-  "name": "socketio-jwt",
-  "version": "4.5.0",
+  "name": "socketio-jwt2",
+  "version": "4.5.1",
   "description": "authenticate socket.io connections using JWTs",
   "main": "lib/index.js",
   "keywords": [
@@ -13,9 +13,15 @@
     "email": "jfromaniello@gmail.com",
     "url": "http://joseoncode.com"
   },
+  "contributors": [
+    {
+      "name": "qazwsxedccsqzse",
+      "email": "qazwsxedccsqzse@gmail.com"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/auth0/socketio-jwt.git"
+    "url": "https://github.com/qazwsxedccsqzse/socketio-jwt"
   },
   "scripts": {
     "test": "mocha"

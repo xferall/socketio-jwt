@@ -1,4 +1,4 @@
-# This library is no longer maintained/supported by Auth0
+# This library is forked from auth0-community/socketio-jwt
 
 [![Build Status](https://travis-ci.org/qazwsxedccsqzse/socketio-jwt.svg)](https://travis-ci.org/qazwsxedccsqzse/socketio-jwt)
 
@@ -7,7 +7,7 @@ Authenticate socket.io incoming connections with JWTs. This is useful if you are
 ## Installation
 
 ```
-npm install socketio-jwt
+npm install socketio-jwt2
 ```
 
 ## Example usage
@@ -83,6 +83,16 @@ Append the jwt token using query string:
 ```javascript
 var socket = io.connect('http://localhost:9000', {
   'query': 'token=' + your_jwt
+});
+```
+
+Append the jwt token using Authorization in headers:
+
+```javascript
+var socket = io.connect('http://localhost:9000', {
+  extraHeaders: {
+    authorization: your_jwt
+  }
 });
 ```
 
