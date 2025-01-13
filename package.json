@@ -28,7 +28,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "jsonwebtoken": "^8.0.1",
+    "jsonwebtoken": "^9.0.2",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
@@ -36,7 +36,7 @@
     "express": "^4.15.5",
     "mocha": "~1.17.0",
     "passport-local": "~0.1.6",
-    "request": "~2.19.0",
+    "request": "~2.88.2",
     "serve-static": "^1.7.1",
     "server-destroy": "~1.0.1",
     "should": "~1.2.2",
